@@ -1,0 +1,27 @@
+{% extends 'music_nation/base.html' %}
+{%block title%}
+{%endblock%}
+{%block content%}
+  <ul class="album-list" style="font-size:30px">
+    <h2 style="color:rgb(0, 0, 0); font-size:50px; text-decoration:underline">{{ album.album_name }}</h2>
+    {% if album.album_artist == user %}
+    <a style="color:rgb(255, 0, 0)" href="{% url 'music_nation:delete_album' username album %}">Delete</a> /
+    <a style="color:rgb(0, 79, 143)" href="{% url 'music_nation:add_song' username album %}">Add new song</a>
+    {% endif %}
+
+<div style="margin-left:100px">
+    {% for song in songs %}
+      <li style="color:rgb(0, 0, 0);"class="list">
+        {{song.song_name}}<br> 
+        <!--{% if album.album_artist == user %}
+        <a style="color:rgb(255, 0, 0); margin-left:750px;" href="#">Delete</a>
+        {% endif %}<br>-->
+        <audio controls style="width:700px">
+          <source src="{{ song.song_file.url }}" type="audio/mp3">
+        </audio>
+      </li><hr/>
+
+    {% endfor %}
+  </div>
+  </ul>
+{%endblock%}

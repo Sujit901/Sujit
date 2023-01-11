@@ -1,0 +1,21 @@
+{% extends 'music_nation/base.html' %}
+
+{%block title%}
+{%endblock%}
+{%block content%}
+
+  <div class="container" align="center" style= "margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%); font-size:30px"><b>
+    <h2 style="margin:30px; font-size:35px"><b>Add new song here.</b></h2>
+    <form method="POST" enctype="multipart/form-data">{# this field is important for file upload #}
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="save btn btn-success" style="font-size:30px">Save</button>
+    </form></b>
+  </div>
+
+{%endblock%}

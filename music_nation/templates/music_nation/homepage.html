@@ -1,0 +1,34 @@
+{% extends 'music_nation/base.html' %}
+
+{% block title %}
+{% endblock %}
+{% block content %}
+<hr/>
+<div>
+  <ul class="home-list">
+    {% for album in albums %}
+      <li>
+        <span><a class="home-a" href="{% url 'music_nation:album_detail' username=album.album_artist album=album.album_name %}">
+          <img src="{{ album.album_logo.url }}" style="width:150px">
+        </a></span>
+         <span style="color:#000000; font-size:30px">{{album.album_name}} by</span>
+        <a style="font-size:30px" class="home-a" href="#">
+          {{album.album_artist}}
+        </a>
+      </li><hr/>
+    {% endfor %}
+  </ul>
+</div>
+<!--<div align="center" style= "margin: 0;
+position: absolute;
+top: 90%;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%)">
+{{ song.song_name }}<br>
+<audio controls style="width:1000px">
+  <source src="{{ song.song_file.url }}" type="audio/mp3">
+</audio>
+
+</div>-->
+{%endblock%}

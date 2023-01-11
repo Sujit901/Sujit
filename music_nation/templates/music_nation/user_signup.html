@@ -1,0 +1,42 @@
+{% extends 'music_nation/base.html' %}
+
+{% block title %}SignUp{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h3><strong>You will have to logout and sign in as a new user</strong></h3>
+<small>Do you want to <a href="{% url 'music_nation:logout' %}"><strong>LogOut</strong></a></small>
+
+{% else %}
+      {% if message %}
+              <li style="list-style-type:none;"><h3><strong>{{ message }}</strong></h3></li>
+      {% endif %}
+    <div class="login">
+   
+  <form method="post">
+  <div  style= "margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%); font-size:30px" >
+    <b>
+  <h2 class="sign_logo" style="font-size:40px; margin-right:500px"><b><u>SignUp</u></b></h2>
+    {% csrf_token %}
+   
+     {% for field in form %}
+    <table style="margin:10px">
+    {{field.errors}}
+    {{ field.label_tag}}
+    <div class="sign_up">
+     {{field}}
+    </div>
+    </table>
+     {% endfor %}
+    <button type="submit" class="btn btn-primary" style="background-color:rgb(1, 156, 1); font-size:30px">SignUp</button>
+    </b> </div>
+  </form>
+ 
+  </div>
+{% endif %}
+{% endblock %}

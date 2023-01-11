@@ -1,0 +1,32 @@
+{% extends 'music_nation/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css' %}" integrity="undefined" crossorigin="anonymous">
+      {% block content %}
+
+  <img class="image-box" src="{% static 'music_nation/img/aboutpic.jpg' %}" alt="music">
+  
+  <div class="inner-container">
+  <h1>About Maize</h1>
+  <p class="text">
+Maize is a digital music streaming service that gives you access to millions of songs, podcasts and videos from artists all over the world, like Apple Music. 
+
+Maize is immediately appealing because you can access content for free by simply signing up using an email address or by connecting with Facebook. If you're not keen on monthly subscription fees for Maize Premium, or just want to dip your toe in and test it out, it's easy to get started and there's no commitment.
+
+You can find out the main differences between Maize Free and Premium in our separate feature but as a quick summary, the free version is ad-supported, much like radio stations. The free version of Maize can be accessed on PC, laptop and mobile phone, but the full service needs a Maize Premium subscription.
+
+  </p>
+  </div>
+
+  <div class="social-menu">
+  <h1><b>Our Social Handle</b></h1>
+  <ul>
+    <li><a href="https://www.facebook.com/profile.php?id=100054290979896"><i class="fab fa-facebook"></i></a></li>
+    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+    <li><a href="https://www.instagram.com/sujit.upadhyaya/?utm_medium=copy_link&fbclid=IwAR1bI1pYqiCr3OGVCXwY7VYzjMiOyun_OvbCD0N_2SO80gBwhAGuTJUMD38"><i class="fab fa-instagram"></i></a></li>
+    <li><a href="https://www.youtube.com/channel/UC10hnWetoFAh48LYwSsOdWw"><i class="fab fa-youtube"></i></a></li>
+    <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+  </ul>
+</div>
+
+{% endblock content %}
+ 

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>{% block title %}MusicNation{% endblock %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    	<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'music_nation/css/bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'music_nation/css/all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'music_nation/css/fontawesome.min' %}">
+    <link rel="stylesheet" href="{% static 'music_nation/css/style.css' %}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'music_nation/css/music_nation.css' %}"
+    />
+    <link rel="stylesheet" href=" {% static 'music_nation/css/style.css' %}" />
+  </head>
+  <body style="background-color: rgb(255, 255, 255)">
+    <div>
+      <header>
+        <nav>
+          <ul class="bglight" style="background-color: rgb(0, 0, 0)">
+            <li class="li-left">
+              <a class="base-a-img" href="{% url 'music_nation:home' %}">
+                <img
+                  src="{% static 'music_nation/img/IMG_20210604_154039.jpg' %}"
+                  style="width: 130px"
+                  alt="logo"
+                />
+              </a>
+            </li>
+            <li class="li-left" style="color: rgb(0, 0, 0)">
+              <h2 class="base-a" style="color: rgb(255, 255, 255)">
+                <div>
+
+                  <b>
+                    <i style="font-size: 45px">
+                      M<span style="color: rgb(255, 166, 0)">a</span>i<span
+                        style="color: rgb(255, 166, 0)"
+                        >z</span
+                      >e Music</i
+                    ><sup></sup> </b
+                  >
+                    </div>
+              </h2>
+            </li> 
+               <!---   Start of the search box    -->
+                  <div class="d-flex align-items-center">
+                  <div class="col-sm-4 " style="margin-left:30%; padding: top 200px ">
+				<form action="{% url 'music_nation:search' %}" method="GET">
+					<div class="input-group search_box" >
+						<input type="text" class="form-control" placeholder="Search Song" name="m" style="font-size: 20px;">
+						<button class="btn btn-info" type="submit" style="font-size:20px">Search</button>
+					</div>
+				</form>
+			</div>
+                
+                  <!---   End of the search box    -->
+              
+            {% if user.is_authenticated %}
+            <li class="li-right">
+              <a class="base-a" href="{% url 'music_nation:aboutus' %}" 
+                ><h2>About Maize</h2></a
+              >
+            </li>
+
+            <li class="li-right">
+              <a class="base-a" href="{% url 'music_nation:logout' %}"
+                ><h2>Logout</h2></a
+              >
+            </li>
+            <li class="li-right">
+              <a class="base-a" href="{% url 'music_nation:add_album' user %}"
+                ><h2>Add Album</h2></a
+              >
+            </li>
+            <li class="li-right">
+              <a
+                class="base-a"
+                href="{% url 'music_nation:profile_detail' user %}"
+                ><h2>{{ user.username }}<img class="rounded-circle account-img" src="{{ user.profile.image.url }}" style="width:80px; height:60px"></h2>
+                </a
+              >
+            </li>
+            {% else %}
+            <li class="li-right">
+              <a class="base-a" href="{% url 'music_nation:aboutus' %}" 
+                ><h2>About Maize</h2></a
+              >
+            </li>
+            <li class="li-right">
+              <a class="base-a" href="{% url 'music_nation:login' %}"
+                ><h2>Login</h2></a
+              >
+            </li>
+            <li class="li-right">
+              <a class="base-a" href="{% url 'music_nation:signup' %}"
+                ><h2>Sign Up</h2></a
+              >
+            </li>
+            {% endif %}     
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div>
+      {%block content%} {% if posts %}
+      <h2 class="d-flex justify-content-center"><b><div align="center"><img src="{% static 'music_nation/img/happy.jpeg' %}"></div><br>Search Result Found</b></h2><br>
+      {% for search in posts %}
+      <h1>{{search}}</h1>
+      <div align="center">
+      <audio controls style="width: 750px">
+        <source src="{{ search.song_file.url }}" type="audio/mp3" />
+      </audio>
+    </div><br><br>
+      {% endfor %} 
+      {% else %}
+      <h2 class="d-flex justify-content-center"><b><div align="center"><img src="{% static 'music_nation/img/sad.png' %}"></div><br>Result Not Found. Try different keywords.</b></h2>
+      {% endif %} {% endblock %}
+    </div>
+  </body>
+</html>

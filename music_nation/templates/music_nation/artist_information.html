@@ -1,0 +1,41 @@
+{% extends 'music_nation/base.html' %}
+{% load static %}
+{%block title%}
+{%endblock%}
+{%block content%}
+
+<div class="content-section" align="center">
+  <div>
+      <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" style="width:400px; height:390px" align="center">
+     <b> <div class="media-body">
+          <p class="account-heading" style="font-size:50px">{{ username }}</p></b>
+          <p class="text-seconndary" style="font-size:30px">{{ user.email }}</p><br><b></b>
+      
+       </div></b>
+  </div>
+</div>
+<div style="margin-left:800px">
+  <a style="color:rgb(0, 79, 143); font-size:40px" href="{% url 'music_nation:add_album' user %}">Add new album</a>
+</div>
+<div class="container">
+  {% for album in albums %}
+      <h2 ><a style="color:rgb(0, 0, 0); font-size:50px" href="{% url 'music_nation:album_detail' username album %}"><b>{{album.album_name}}</b></a></h2>
+   <div style="font-size:30px">
+      {% if album.album_artist == user %}
+      <a style="color:rgb(255, 4, 4)" href="{% url 'music_nation:delete_album' username album %}">Delete</a> /  
+      <a style="color:rgb(0, 79, 143)" href="{% url 'music_nation:add_song' username album %}">Add new song</a>
+    {% endif %}</div>
+    {% for song in album.songs.all %}
+      <li style="list-style-type: none; font-size:30px; margin-left:70px;">{{song.song_name}}<br/>
+        <!--{% if album.album_artist == user %}
+        <a style="color:rgb(255, 0, 0); margin-left:800px; font-size:30px" href="#">Delete</a>
+        {% endif %}<br>-->
+        <audio controls style="width:750px">
+          <source src="{{ song.song_file.url }}" type="audio/mp3">
+        </audio>
+      </li><br>
+    {% endfor %}
+    <hr/>
+  {% endfor %}
+</div>
+{%endblock%}
